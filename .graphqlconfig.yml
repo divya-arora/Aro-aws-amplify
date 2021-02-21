@@ -1,0 +1,12 @@
+projects:
+  testapi:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - schema.grapghql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: javascript
+        generatedFileName: ''
+        docsFilePath: src/graphql
