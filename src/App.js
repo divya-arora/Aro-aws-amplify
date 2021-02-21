@@ -23,8 +23,8 @@ Amplify.configure(awsconfig);
 
 const GRAPHQL_API_REGION = awsconfig.aws_appsync_region
 const GRAPHQL_API_ENDPOINT_URL = awsconfig.aws_appsync_graphqlEndpoint
-//const S3_BUCKET_REGION = awsconfig.aws_user_files_s3_bucket_region
-//const S3_BUCKET_NAME = awsconfig.aws_user_files_s3_bucket
+const S3_BUCKET_REGION = awsconfig.aws_user_files_s3_bucket_region
+const S3_BUCKET_NAME = awsconfig.aws_user_files_s3_bucket
 const AUTH_TYPE = awsconfig.aws_appsync_authenticationType
 
 // AppSync client instantiation
@@ -34,10 +34,10 @@ const client = new AWSAppSyncClient({
   auth: {
     type: AUTH_TYPE,
     // Get the currently logged in users credential.
-   // jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken(),
+    jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken(),
   },
   // Amplify uses Amazon IAM to authorize calls to Amazon S3. This provides the relevant IAM credentials.
- // complexObjectsCredentials: () => Auth.currentCredentials()
+ complexObjectsCredentials: () => Auth.currentCredentials()
 });
 
 class App extends Component {
